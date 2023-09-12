@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'ubuntu' }
     environment {
-      def API_LIST = []
+      API_LIST = ""
     }
     stages {
         stage('Get Repo') {
