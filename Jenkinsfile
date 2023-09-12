@@ -20,10 +20,9 @@ pipeline {
 		if(f.directory){
 		  apiList.add(f.name)
 		  }
-		}
-		env.API_LIST = apiList
-		echo "${env.API_LIST}"
 	      }
+	      env.API_LIST = apiList
+	      echo "${env.API_LIST}"
 	    }
 	  }
 	}
