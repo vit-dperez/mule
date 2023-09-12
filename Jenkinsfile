@@ -23,7 +23,7 @@ pipeline {
 		  }
 	      }
 
-	      env.API_LIST = apiList
+	      env.API_LIST = apiList.toString()
 	      echo "${env.API_LIST}"
 	    }
 	  }
