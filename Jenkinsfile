@@ -19,6 +19,7 @@ pipeline {
 	      files.each{ f ->
 		if(f.directory){
 		  apiList.add(f.name)
+		  }
 		}
 		env.API_LIST = apiList
 		echo "${env.API_LIST}"
