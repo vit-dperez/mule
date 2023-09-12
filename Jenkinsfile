@@ -1,8 +1,5 @@
 pipeline {
     agent { label 'ubuntu' }
-    environment {
-      API_LIST = ""
-    }
     stages {
         stage('Get Repo') {
             steps {
@@ -12,15 +9,20 @@ pipeline {
 
         }
 	stage('Get parameters'){
+	  environment{
+	    API_LIST = ''
+	  }
 	  steps {
             script{
               def apiList = []
 	      def files = findFiles()
+
 	      files.each{ f ->
 		if(f.directory){
 		  apiList.add(f.name)
 		  }
 	      }
+
 	      env.API_LIST = apiList
 	      echo "${env.API_LIST}"
 	    }
