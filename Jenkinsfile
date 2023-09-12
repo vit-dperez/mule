@@ -22,7 +22,7 @@ pipeline {
 		  }
 	      }
 	      env.API_LIST = apiList
-	      echo "${env.API_LIST}"
+	      echo "${apiList}"
 	    }
 	  }
 	}
