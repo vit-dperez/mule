@@ -16,7 +16,7 @@ pipeline {
             script{
               def apiList = []
 	      def files = findFiles()
-	      files.each{
+	      files.each{ f ->
 		if(f.directory){
 		  apiList.add(f.name)
 		}
