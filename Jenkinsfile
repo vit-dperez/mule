@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'ubuntu' }
     environment {
-      API_LIST = ''
+      def API_LIST = []
     }
     stages {
         stage('Get Repo') {
@@ -22,7 +22,7 @@ pipeline {
 		  }
 	      }
 	      env.API_LIST = apiList
-	      echo "${apiList}"
+	      echo "${env.API_LIST}"
 	    }
 	  }
 	}
