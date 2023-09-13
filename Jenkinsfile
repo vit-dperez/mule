@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'ubuntu' }
+    parameters {
+      booleanParam(name: 'CHOICE_LIST', defaultValue='', description: 'Select multiple choices from the list')
+    }
     stages {
         stage('Get Repo') {
             steps {
@@ -9,23 +12,13 @@ pipeline {
 
         }
 	stage('Get parameters'){
-	  environment{
-	    API_LIST = ''
-	  }
 	  steps {
             script{
-              def apiList = []
-	      def files = findFiles()
-
-	      files.each{ f ->
-		if(f.directory){
-		  apiList.add(f.name)
-		  }
-	      }
-
-	      env.API_LIST = apiList.toString()
-	      echo "${env.API_LIST}"
+              def choices = []
+	      if (params.CHOICE_LIST){
+	      choices = params.CHOICE_LIST.split(",")
 	    }
+	    echo "Selected Choices: ${choices}"
 	  }
 	}
     }
