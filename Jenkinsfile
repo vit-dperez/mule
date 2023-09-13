@@ -1,8 +1,6 @@
 pipeline {
     agent { label 'ubuntu' }
-    parameters {
-      booleanParam(name: 'CHOICE_LIST', defaultValue='', description: 'Select multiple choices from the list')
-    }
+    parameters {booleanParam(name: 'CHOICES', defaultValue: true, description: 'Toggle this value')}
     stages {
         stage('Get Repo') {
             steps {
@@ -15,8 +13,8 @@ pipeline {
 	  steps {
             script{
               def choices = []
-	      if (params.CHOICE_LIST){
-	      choices = params.CHOICE_LIST.split(",")
+	      if (params.CHOICES){
+	      choices = params.CHOICES.split(",")
 	    }
 	    echo "Selected Choices: ${choices}"
 	  }
