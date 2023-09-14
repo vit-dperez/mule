@@ -1,6 +1,11 @@
 pipeline {
     agent { label 'ubuntu' }
-    parameters {booleanParam(name: 'CHOICES', defaultValue: true, description: 'Choinces?')}
+    options{
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    parameters {
+        booleanParam(name: 'CHOICES', defaultValue: true, description: 'Choinces?')
+    }
     stages {
         stage('Get Repo') {
             steps {
