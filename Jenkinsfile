@@ -21,7 +21,7 @@ pipeline {
                 }
               }
 	          if (params.CHOICES){
-	          choices = params.CHOICES.split(",")
+	          choices = params.CHOICES
 	          }
 	          echo "Selected Choices: ${choices}"
 	        }
