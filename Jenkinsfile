@@ -13,10 +13,11 @@ pipeline {
 	  steps {
             script{
               def choices = []
+              def apiList = []
               def files = findFiles()
               files.each{ f ->
                 if(f.directory){
-                    choices.add(f.name)
+                    apiList.add(f.name)
                 }
               }
 	          if (params.CHOICES){
