@@ -13,12 +13,18 @@ pipeline {
 	  steps {
             script{
               def choices = []
-	      if (params.CHOICES){
-	      choices = params.CHOICES.split(",")
+              def files = findFiles()
+              files.each{ f ->
+                if(f.directory){
+                    choices.add(f.name)
+                }
+              }
+	          if (params.CHOICES){
+	          choices = params.CHOICES.split(",")
+	          }
+	          echo "Selected Choices: ${choices}"
+	        }
 	    }
-	    echo "Selected Choices: ${choices}"
-	  }
-	}
     }
   }
 }
