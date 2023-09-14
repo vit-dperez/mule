@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'ubuntu' }
-    parameters {booleanParam(name: 'CHOICES', defaultValue: true, description: 'Toggle this value')}
+    parameters {booleanParam(name: 'CHOICES', defaultValue: false, description: 'Toggle this value')}
     stages {
         stage('Get Repo') {
             steps {
@@ -17,7 +17,7 @@ pipeline {
               def files = findFiles()
               files.each{ f ->
                 if(f.directory){
-                    apiList.add(f.name)
+                    choices.add(f.name)
                 }
               }
 	          if (params.CHOICES){
