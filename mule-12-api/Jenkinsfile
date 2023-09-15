@@ -1,0 +1,26 @@
+pipeline {
+    agent { label 'ubuntu' }
+    stages {
+        stage('Get Repo') {
+            steps {
+                script{
+                    echo "Cloning Git repo..."
+                }
+            }
+        }
+        stage('Build the API'){
+            steps{
+                script{
+                    echo "Building with maven"
+                }
+            }
+        }
+        stage('Archive the artifact') {
+            steps{
+                script{
+                    echo "Deployment done!" >> api.txt
+                }
+            }
+        }
+    }
+}
