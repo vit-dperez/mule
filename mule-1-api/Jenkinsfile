@@ -1,3 +1,29 @@
+def paramsListStart= [
+    choice(
+        choices: ['GSPRF','GSDEV','GSTRN','GSSIT','GSUAT','GSUQA','GSPRD'], 
+        name: 'env',
+        description: 'Environment to Deploy'
+    )
+]
+def paramsListEnd= [
+    choice(
+        choices: ['us-east-2','us-east-1'], 
+        name: 'region'
+    ),
+    gitParameter(
+        branchFilter: 'origin/(.*)', //filtering this common part of all branch names
+        defaultValue: 'master', 
+        name: 'BRANCH', 
+        type: 'PT_BRANCH'
+    )
+]
+
+properties([
+    parameters(
+        paramsListStart + paramsListEnd
+    )
+])
+
 pipeline {
     agent { label 'ubuntu' }
     stages {
@@ -12,6 +38,9 @@ pipeline {
             steps{
                 script{
                     echo "Building with maven"
+                    echo "The environment is: ${params.env}"
+                    echo "The region is: ${params.region}"
+                    echo "The branch is: ${params.BRANCH}"
                 }
             }
         }
